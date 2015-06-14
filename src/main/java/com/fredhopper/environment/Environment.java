@@ -106,6 +106,8 @@ public interface Environment {
   String SERVER_SHUTDOWN_TOKEN = "Fredhopper";
 
   /**
+   * The ID of the environment.
+   * 
    * @return the id of the environment
    */
   default String getId() {
@@ -113,8 +115,11 @@ public interface Environment {
   }
 
   /**
+   * The name of the environment. The default value is
+   * <code>development</code>
+   * 
+   * @see RuntimeMode
    * @return the name of the environment
-   * @apiNote The default value is <code>development</code>
    */
   default String getEnvironmentName() {
     return "development";
