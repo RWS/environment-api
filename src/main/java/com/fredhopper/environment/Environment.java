@@ -277,7 +277,6 @@ public interface Environment {
    * </ul>
    * 
    * @return an instance of {@link Environment}
-   * @throws IllegalArgumentException
    */
   static Environment createEnvironment() {
     return createEnvironment(new HashMap<>());
