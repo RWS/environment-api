@@ -6,8 +6,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A base implementation structure for {@link LifeCycle}.
- * 
- * @author bnobakht
  */
 public abstract class AbstractLifeCycle implements LifeCycle {
 
@@ -38,7 +36,6 @@ public abstract class AbstractLifeCycle implements LifeCycle {
     changeState(State.STARTING, State.RUNNING);
   }
 
-
   @Override
   public void pause() throws Exception {
     doPause();
@@ -59,6 +56,8 @@ public abstract class AbstractLifeCycle implements LifeCycle {
   }
 
   /**
+   * Add a new {@link StateListener}
+   * 
    * @param listener the {@link StateListener} to add
    */
   public void addStateListener(StateListener listener) {
@@ -66,6 +65,8 @@ public abstract class AbstractLifeCycle implements LifeCycle {
   }
 
   /**
+   * Remove a registered {@link StateListener}
+   * 
    * @param listener the {@link StateListener} to remove
    */
   public void removeStateListener(StateListener listener) {
@@ -116,32 +117,42 @@ public abstract class AbstractLifeCycle implements LifeCycle {
   }
 
   /**
+   * Similar to {@link #initLifeCycle()} for inherited classes.
+   * 
    * @see LifeCycle#initLifeCycle()
-   * @throws Exception
+   * @throws Exception See {@link #initLifeCycle()}
    */
   protected abstract void doInitLifeCycle() throws Exception;
 
   /**
+   * Similar to {@link #startLifeCycle()} for inherited classes.
+   * 
    * @see LifeCycle#startLifeCycle()
-   * @throws Exception
+   * @throws Exception See {@link #startLifeCycle()}
    */
   protected abstract void doStartLifeCycle() throws Exception;
 
   /**
+   * Similar to {@link #pause()} for inherited classes.
+   * 
    * @see Resumable#pause()
-   * @throws Exception
+   * @throws Exception See {@link #pause()}
    */
   protected void doPause() throws Exception {}
 
   /**
+   * Similar to {@link #resume()} for inherited classes.
+   * 
    * @see Resumable#resume()
-   * @throws Exception
+   * @throws Exception See {@link #resume()}
    */
   protected void doResume() throws Exception {}
 
   /**
+   * Similar to {@link #stopLifeCycle()} for inherited classes.
+   * 
    * @see LifeCycle#stopLifeCycle()
-   * @throws Exception
+   * @throws Exception See {@link #stopLifeCycle()}
    */
   protected abstract void doStopLifeCycle() throws Exception;
 }

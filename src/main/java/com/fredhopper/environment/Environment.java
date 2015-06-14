@@ -121,12 +121,16 @@ public interface Environment {
   }
 
   /**
+   * The application name.
+   * 
    * @return the name of the application configured as
    *         <code>application.name</code>.
    */
   String getApplicationName();
 
   /**
+   * The path to application root.
+   * 
    * @return the root of the application configured as
    *         <code>${application.name}.root</code>. Can be
    *         <code>null</code>.
@@ -134,62 +138,76 @@ public interface Environment {
   Path getApplicationRoot();
 
   /**
+   * The path to application logs root. By default, the
+   * implementations might choose to fall back to
+   * <code>${application.name}.root/logs</code>.
+   * 
    * @return the root of the application logs. Can be
    *         <code>null</code>.
-   * @apiNote By default, the implementations might choose to
-   *          fall back to
-   *          <code>${application.name}.root/logs</code>.
    */
   Path getApplicationLogsRoot();
 
   /**
+   * The log file name. By default, the implementations might
+   * choose to fall back to <code>${application.name}.log</code>
+   * 
    * @return the name of the log files for the application.
-   * @apiNote By default, the implementations might choose to
-   *          fall back to <code>${application.name}.log</code>
    */
   String getLogFileName();
 
   /**
+   * The rotating log file pattern.
+   * 
    * @return the rotating log file pattern potentially include a
    *         date/time pattern.
    */
   String getRotatingLogFilePattern();
 
   /**
+   * The access log file name. By default, implementations might
+   * choose to use {@link #getLogFileName()}-
+   * <code>access.log</code>
+   * 
    * @return the log file name for access logs of the
    *         application.
-   * @apiNote By default, implementations might choose to use
-   *          {@link #getLogFileName()}-<code>access.log</code>
-   *          .
    */
   String getAccessLogFileName();
 
   /**
+   * The rotating access log file name.
+   * 
    * @return the name pattern for rotating access log files.
    */
   String getRotatingAccessLogFileName();
 
   /**
+   * The context path. By default, it falls back to
+   * <code>/${application.name}</code>.
+   * 
    * @return the context path at which the application is
    *         accessible through HTTP.
-   * @apiNote By default, it falls back to
-   *          <code>/${application.name}</code>.
    */
   String getContextPath();
 
   /**
+   * The host name of the server.
+   * 
    * @return the host name of the server running the
    *         application.
    */
   String getServerHost();
 
   /**
+   * The port number of the server.
+   * 
    * @return the port number of the server running the
    *         application.
    */
   int getServerPort();
 
   /**
+   * The value of a key.
+   * 
    * @param key the environment key
    * @return the value for the key or <code>null</code>
    */
@@ -198,6 +216,8 @@ public interface Environment {
   }
 
   /**
+   * The value of a key with a supplier.
+   * 
    * @param key the environment key
    * @param supplier a {@link Supplier} for the key in case
    *        there is no value available
@@ -206,6 +226,8 @@ public interface Environment {
   String getValue(String key, Supplier<String> supplier);
 
   /**
+   * The description of the environment.
+   * 
    * @return a formatted {@link StringBuilder} to describe the
    *         environment instance.
    */
@@ -262,6 +284,8 @@ public interface Environment {
   }
 
   /**
+   * Create an environment.
+   * 
    * @param environment the base environment to use. Values will
    *        be over-written first by {@link System#getenv()},
    *        then {@link System#getProperties()}, and then
