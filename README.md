@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/travis/sdl/environment-api.svg?style=flat-square)](https://travis-ci.org/sdl/environment)
+
 ## Environment API
 
 Environment API provides a simple way to collect and access different type of input (e.g. environment values, system properties and properties files) for a Java application for its runtime. 
