@@ -100,10 +100,10 @@ public interface Environment {
   String SERVER_PORT_SUFFIX = ".server.port";
 
   /**
-   * The default password to use for shutting down a local HTTP
-   * server that the application might be running.
+   * The environment or system property key to hold the shutdown
+   * password token for Jetty (HTTP server).
    */
-  String SERVER_SHUTDOWN_TOKEN = "Fredhopper";
+  String SERVER_SHUTDOWN_TOKEN_KEY = "server.shutdown.token";
 
   /**
    * The ID of the environment.
@@ -229,6 +229,17 @@ public interface Environment {
    * @return the value for the key or delegates to the supplier
    */
   String getValue(String key, Supplier<String> supplier);
+
+  /**
+   * The value of {@link #SERVER_SHUTDOWN_TOKEN_KEY} in the
+   * created environment.
+   * 
+   * @return the server shutdown token or <code>null</code> if
+   *         none is specified.
+   */
+  default String getServerShutdownToken() {
+    return getValue(SERVER_SHUTDOWN_TOKEN_KEY);
+  }
 
   /**
    * The description of the environment.
