@@ -90,12 +90,12 @@ public interface Environment {
   String AUDIT_LOG_PATTERN = "%d{ISO8601} %level %msg%n";
 
   /**
-   * 
+   *
    */
   String SERVER_HOST_SUFFIX = ".server.host";
 
   /**
-   * 
+   *
    */
   String SERVER_PORT_SUFFIX = ".server.port";
 
@@ -107,7 +107,7 @@ public interface Environment {
 
   /**
    * The ID of the environment.
-   * 
+   *
    * @return the id of the environment
    */
   default String getId() {
@@ -117,7 +117,7 @@ public interface Environment {
   /**
    * The name of the environment. The default value is
    * <code>development</code>
-   * 
+   *
    * @see RuntimeMode
    * @return the name of the environment
    */
@@ -127,7 +127,7 @@ public interface Environment {
 
   /**
    * The application name.
-   * 
+   *
    * @return the name of the application configured as
    *         <code>application.name</code>.
    */
@@ -135,7 +135,7 @@ public interface Environment {
 
   /**
    * The path to application root.
-   * 
+   *
    * @return the root of the application configured as
    *         <code>${application.name}.root</code>. Can be
    *         <code>null</code>.
@@ -146,7 +146,7 @@ public interface Environment {
    * The path to application logs root. By default, the
    * implementations might choose to fall back to
    * <code>${application.name}.root/logs</code>.
-   * 
+   *
    * @return the root of the application logs. Can be
    *         <code>null</code>.
    */
@@ -155,14 +155,14 @@ public interface Environment {
   /**
    * The log file name. By default, the implementations might
    * choose to fall back to <code>${application.name}.log</code>
-   * 
+   *
    * @return the name of the log files for the application.
    */
   String getLogFileName();
 
   /**
    * The rotating log file pattern.
-   * 
+   *
    * @return the rotating log file pattern potentially include a
    *         date/time pattern.
    */
@@ -172,7 +172,7 @@ public interface Environment {
    * The access log file name. By default, implementations might
    * choose to use {@link #getLogFileName()}-
    * <code>access.log</code>
-   * 
+   *
    * @return the log file name for access logs of the
    *         application.
    */
@@ -180,7 +180,7 @@ public interface Environment {
 
   /**
    * The rotating access log file name.
-   * 
+   *
    * @return the name pattern for rotating access log files.
    */
   String getRotatingAccessLogFileName();
@@ -188,7 +188,7 @@ public interface Environment {
   /**
    * The context path. By default, it falls back to
    * <code>/${application.name}</code>.
-   * 
+   *
    * @return the context path at which the application is
    *         accessible through HTTP.
    */
@@ -196,7 +196,7 @@ public interface Environment {
 
   /**
    * The host name of the server.
-   * 
+   *
    * @return the host name of the server running the
    *         application.
    */
@@ -204,7 +204,7 @@ public interface Environment {
 
   /**
    * The port number of the server.
-   * 
+   *
    * @return the port number of the server running the
    *         application.
    */
@@ -212,7 +212,7 @@ public interface Environment {
 
   /**
    * The value of a key.
-   * 
+   *
    * @param key the environment key
    * @return the value for the key or <code>null</code>
    */
@@ -222,7 +222,7 @@ public interface Environment {
 
   /**
    * The value of a key with a supplier.
-   * 
+   *
    * @param key the environment key
    * @param supplier a {@link Supplier} for the key in case
    *        there is no value available
@@ -231,9 +231,24 @@ public interface Environment {
   String getValue(String key, Supplier<String> supplier);
 
   /**
+   * <p>
+   * Method for returning a {@link Map} representation of this
+   * instance.
+   * </p>
+   * <p>
+   * It is the responsibility of the implementing class to
+   * return either an immutable or modifiable {@link Map}
+   * instance.
+   * </p>
+   *
+   * @return map containing Environment key value pairs
+   */
+  Map<String, String> asMap();
+
+  /**
    * The value of {@link #SERVER_SHUTDOWN_TOKEN_KEY} in the
    * created environment.
-   * 
+   *
    * @return the server shutdown token or <code>null</code> if
    *         none is specified.
    */
@@ -243,7 +258,7 @@ public interface Environment {
 
   /**
    * The description of the environment.
-   * 
+   *
    * @return a formatted {@link StringBuilder} to describe the
    *         environment instance.
    */
@@ -291,7 +306,7 @@ public interface Environment {
    * an {@link IllegalArgumentException} if an
    * {@link IOException} occurs.
    * </ul>
-   * 
+   *
    * @return an instance of {@link Environment}
    */
   static Environment createEnvironment() {
@@ -300,7 +315,7 @@ public interface Environment {
 
   /**
    * Create an environment.
-   * 
+   *
    * @param environment the base environment to use. Values will
    *        be over-written first by {@link System#getenv()},
    *        then {@link System#getProperties()}, and then

@@ -28,7 +28,7 @@ final class KeyValueEnvironment implements Environment {
 
   /**
    * Ctor.
-   * 
+   *
    * @param env the provided default default environment values
    * @see #KeyValueEnvironment(Map, String)
    */
@@ -38,7 +38,7 @@ final class KeyValueEnvironment implements Environment {
 
   /**
    * Ctor.
-   * 
+   *
    * @param env the provided default environment values
    * @param applicationName the name of the application
    */
@@ -134,6 +134,15 @@ final class KeyValueEnvironment implements Environment {
   @Override
   public String toString() {
     return getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + "[" + getId() + "]";
+  }
+
+  /**
+   * {@inheritDoc}
+   *
+   */
+  @Override
+  public Map<String, String> asMap() {
+    return Collections.unmodifiableMap(environment);
   }
 
 }
