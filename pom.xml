@@ -24,7 +24,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.guava>18.0</version.guava>
-		<version.junit>4.12</version.junit>
+		<version.junit>4.13.1</version.junit>
 		<version.truth>0.26</version.truth>
 	</properties>
 
